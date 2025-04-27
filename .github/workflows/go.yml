@@ -13,5 +13,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: "setup go"
-      run: "sudo apt install go && go test -v ./test/footer_test.go"
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+    
+      - name: Build
+        run: go build -v ./...
+    
+      - name: Test
+        run: go test -v ./...
+
+
